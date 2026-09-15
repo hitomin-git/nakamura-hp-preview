@@ -1,0 +1,80 @@
+/* Shared fixed header, with mobile-specific reading rhythm. */
+body{padding-top:96px}
+header{position:fixed;inset:0 0 auto;height:96px;z-index:40;border-bottom:1px solid var(--line)}
+.detail-layout aside{top:120px}
+.mobile-copy,.mobile-shortcuts{display:none}
+@media(min-width:761px) and (max-width:1250px){header>.button{display:none}}
+@media(max-width:760px){
+ body{padding-top:72px;line-height:1.85}
+ header{height:72px}
+ .wrap{width:calc(100% - 36px)}
+ .section{padding-block:44px}
+ h1,h2,h3{letter-spacing:0;line-break:strict;overflow-wrap:anywhere}
+ h2,.intro h2,.profile h2,.faq h2,.section-heading h2,.footer-grid h2{font-size:24px;line-height:1.55;margin-bottom:18px}
+ p{margin-bottom:16px}
+ .eyebrow{margin-bottom:12px;font-size:10px}
+ .hero-copy{padding:25px 20px 22px}
+ .hero h1{font-size:clamp(25px,7vw,32px);line-height:1.5;margin-bottom:16px}
+ .hero .eyebrow{margin-bottom:14px}
+ .hero-lead{font-size:15px;line-height:1.85;margin-bottom:12px}
+ .hero-lead br,.intro p br,.section-heading p br,.detail-hero p br{display:none}
+ .hero .text-link{display:none}
+ .hero-photo{height:220px;margin:0 18px;min-height:0}
+ .hero-photo img{border-radius:3px 3px 38px 3px}
+ .photo-caption{font-size:14px;bottom:20px;right:20px}
+ .hero-note{margin-top:0;padding:14px 16px;gap:5px 12px;font-size:10px}
+ .hero-note a{font-size:13px}
+ .mobile-shortcuts{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:16px 18px 0}
+ .mobile-shortcuts a{display:flex;align-items:center;justify-content:space-between;min-height:48px;padding:10px 14px;border:1px solid var(--line);font-size:13px}
+ .intro{gap:12px;padding-bottom:16px}
+ .intro p{font-size:15px}
+ .intro .large{font-size:18px}
+ .approach-grid{gap:14px;padding-bottom:40px}
+ .approach-grid article{padding-top:14px}
+ .approach-grid .index{margin-bottom:5px}
+ .approach-grid h3{font-size:17px;margin-bottom:6px}
+ .approach-grid p{font-size:14px;line-height:1.85}
+ .desktop-copy{display:none}
+ .mobile-copy{display:inline}
+ .section-heading p{font-size:14px;line-height:1.8}
+ .concerns-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .concern{position:relative;flex-direction:column;align-items:center;justify-content:flex-start;gap:9px;padding:14px 8px 16px;border:1px solid #cdd5c8;border-radius:6px;background:#f6f4ed80;transition:background .2s}
+ .concern:hover{padding:14px 8px 16px;background:#f6f4ed}
+ .concern .concern-illustration{width:70px;height:70px;flex:0 0 70px}
+ .concern>div{width:100%;text-align:center}
+ .concern h3{font-family:'Yu Gothic','Hiragino Kaku Gothic ProN',sans-serif;font-size:14px;line-height:1.6;margin:0;font-weight:600}
+ .concern .phrase{display:inline-block}
+ .concern p{display:none}
+ .concern .arrow{position:absolute;right:9px;top:9px;font-size:15px;color:#68736b}
+ .profile{gap:22px}
+ .portrait{max-width:240px}
+ .profile p{font-size:15px}
+ .credentials{font-size:11px;padding-top:14px}
+ .flow{gap:20px;margin-top:24px}
+ .flow article{grid-template-columns:76px minmax(0,1fr);gap:0 14px}
+ .flow img{width:76px;height:100px}
+ .flow h3{font-size:16px}
+ .flow p{font-size:14px;line-height:1.8}
+ .pricing{padding:20px 16px;margin-top:24px;grid-template-columns:minmax(0,1fr) auto}
+ .pricing .price{font-size:32px}
+ .pricing p{font-size:12px}
+ .pricing dl{font-size:13px;margin:8px 0}
+ .pricing>.fine{font-size:12px;line-height:1.8;padding-top:14px}
+ .faq{gap:0}
+ summary{padding-block:17px;font-size:14px}
+ .faq details p{font-size:14px}
+ .contact{padding:42px 18px}
+ .contact h2{font-size:26px}
+ .contact .button{min-width:0;width:min(100%,320px)}
+ .contact small{font-size:11px}
+ footer{padding-top:40px}
+ .footer-grid{gap:22px}
+ .detail-hero{padding:25px 0 20px}
+ .detail-hero h1{font-size:25px;line-height:1.6;margin-bottom:16px;text-wrap:pretty}
+ .detail-layout{padding-top:28px}
+ .detail-layout article h2{font-size:22px;line-height:1.6}
+ .detail-layout article p{font-size:15px;line-height:1.9}
+ .detail-layout aside{position:static}
+ .related h2{font-size:22px}
+}
+@media(max-width:350px){h2,.intro h2,.profile h2,.faq h2,.section-heading h2,.footer-grid h2{font-size:22px}.concern h3{font-size:13px}.concern .concern-illustration{width:64px;height:64px;flex-basis:64px}}
