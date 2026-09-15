@@ -78,3 +78,20 @@ header{position:fixed;inset:0 0 auto;height:96px;z-index:40;border-bottom:1px so
  .related h2{font-size:22px}
 }
 @media(max-width:350px){h2,.intro h2,.profile h2,.faq h2,.section-heading h2,.footer-grid h2{font-size:22px}.concern h3{font-size:13px}.concern .concern-illustration{width:64px;height:64px;flex-basis:64px}}
+
+/* Practitioner presence and a distinct access footer on concern pages. */
+.heading-line{display:block;white-space:nowrap}
+.concern-page .detail-layout aside .consultation-portrait{display:block;float:none;width:100%;height:auto;aspect-ratio:1.1;object-fit:cover;object-position:50% 30%;margin:0 0 20px;border-radius:4px}
+.concern-page .detail-layout aside h3{font-size:20px;line-height:1.65;letter-spacing:0;overflow-wrap:normal}
+.concern-page footer{background:#e9ede4;border-top:1px solid #c4cdc0;padding-top:56px}
+.concern-page .footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+.concern-page .related{padding-bottom:56px}
+@media(max-width:760px){
+ .concern-page .detail-layout aside{padding:24px}
+ .concern-page .detail-layout aside .consultation-portrait{width:160px;max-width:100%;aspect-ratio:1;margin:0 auto 20px}
+ .concern-page .detail-layout aside h3{text-align:center;font-size:20px}
+ .concern-page .footer-grid{grid-template-columns:1fr;gap:24px}
+ .concern-page footer{padding-top:36px}
+ .concern-page .related{padding-top:36px;padding-bottom:36px}
+ .concern-page .footer-grid img{max-height:240px}
+}
