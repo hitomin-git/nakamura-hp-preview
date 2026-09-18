@@ -35,6 +35,6 @@
     return card;
   });
   grid.replaceChildren(...cards);
-  document.getElementById('reviews-intro').textContent = '公式HPに掲載しているお客様の声をご紹介します。';
+  document.getElementById('reviews-intro').remove();
   document.getElementById('reviews-note').remove();
 })();
