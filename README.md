@@ -10,3 +10,13 @@ GitHub Pages: https://hitomin-git.github.io/nakamura-hp-preview/
 静的HTML/CSS/JavaScript。mainブランチのルートから配信します。
 検索エンジン向けにnoindexを指定していますが、URLとリポジトリは公開されています。
 
+
+## TOPの口コミカード
+
+`js/reviews-data.js` の `window.nakamuraGoogleReviews` を編集すると表示を差し替えられます。現在は空配列で、カードは「掲載準備中」と明示した表示イメージです。評価や口コミは作成していません。
+
+Googleの掲載元で確認した口コミだけを、`verified: true`、`author`（投稿者名）、`rating`（整数1〜5）、`text`（原文）、`sourceUrl`（Googleの掲載元HTTPS URL）の各項目で登録してください。未確認データ、評価範囲外、Google以外のURLは表示対象外です。出典確認は編集者が行います。APIキーは不要です。
+
+データが空の場合、JavaScriptが読み込めない場合とも、実評価ではないことを明示したプレースホルダーが残ります。口コミ本文や名前はHTMLとして解釈せずテキストで表示します。新しい外部通信は追加していません。
+
+TOPの追加スタイルは `css/reviews.css` に限定しています。口コミセクションは院長紹介の後、初回来院案内の前に配置しています。
