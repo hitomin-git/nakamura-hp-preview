@@ -25,12 +25,12 @@
     const rating = element('div', 'review-rating');
     const stars = element('span', 'review-stars', '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating));
     stars.setAttribute('aria-hidden', 'true');
-    rating.append(stars, element('span', '', `5点満点中${review.rating}点`));
-    card.append(rating, element('p', 'review-body', review.text));
+    rating.setAttribute('role', 'img');
+    rating.setAttribute('aria-label', `5点満点中${review.rating}点`);
+    rating.append(stars);
+    card.append(element('p', 'review-body', review.text));
     const author = element('div', 'review-author');
-    const avatar = element('span', 'review-avatar', '声');
-    avatar.setAttribute('aria-hidden', 'true');
-    author.append(avatar, element('span', '', review.author));
+    author.append(rating, element('span', '', review.author));
     card.append(author);
     return card;
   });
