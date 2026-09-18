@@ -1,13 +1,13 @@
 # Issue #11 結合テスト
 
-初回実行 `node logs/11/integration-check.cjs` は `AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal` (exit code 1)。GitのLFと作業ツリーのCRLFを比較したテスト側の不備であり、セクション比較の改行コードを正規化して再実行した。サイトコードは変更していない。以下は修正後の実際の結果。Gitから `warning: unable to access 'C:\Users\hitom/.config/git/ignore': Permission denied` が出たが、比較コマンドは終了コード0。
-
 対象: fix/11-deliver-preview-to-main。チェックリスト確認済み。指定 .Codex/CHECKLISTS.md は存在せず、司令塔 .claude/CHECKLISTS.md を代用。
 ブラウザ操作は依頼範囲外。DOMスタブでデータ読込→カード生成→補助文削除を通し検証する。
 
+初回はセクション比較でLF/CRLF差による AssertionError (exit code 1) が発生。テスト側を改行正規化して修正済み。証跡追加後も再実行できるようサイト一致比較はlogsを除外し、main差分ではlogs/11を許容。サイトコード変更なし。
+
 ```text
 > git rev-parse HEAD
-f8f4075afffdb16f4765156455cf4c0059b8f48b
+7e6c247374e792b6185a7e68ff2cc9408bb58aef
 exit code: 0
 ```
 
@@ -18,7 +18,7 @@ exit code: 0
 ```
 
 ```text
-> git diff --name-only 447fa5f HEAD
+> git diff --name-only 447fa5f HEAD -- . :(exclude)logs
 (出力なし)
 exit code: 0
 ```
@@ -29,12 +29,15 @@ exit code: 0
 exit code: 0
 ```
 
-- PASS 447fa5f と復旧HEADの全追跡ファイル一致。作業ツリーのサイトファイルも一致。
+- PASS 447fa5f と復旧HEADのlogs以外の全追跡ファイル一致。作業ツリーのサイトファイルも一致。
 ```text
 > git diff --name-only origin/main HEAD
 css/reviews.css
 index.html
 js/reviews.js
+logs/11/integration-check.cjs
+logs/11/integration-test.md
+logs/11/recovery.md
 logs/5/verification.md
 logs/7/verification.md
 logs/9/verification.md
@@ -117,7 +120,7 @@ index 9152abc..8917063 100644
 exit code: 0
 ```
 
-- PASS mainとの差分は口コミUI/CSS背景・セクション順・過去ログのみ。セクション本文とそれ以外のHTMLは同一。
+- PASS mainとの差分は口コミUI/CSS背景・セクション順・過去ログ・今回のlogs/11証跡のみ。セクション本文とそれ以外のHTMLは同一。
 ```text
 > node --check js/main.js
 (出力なし)

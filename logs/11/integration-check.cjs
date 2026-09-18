@@ -3,6 +3,7 @@ const vm = require('node:vm');
 const assert = require('node:assert/strict');
 const {execFileSync} = require('node:child_process');
 const lines = ['# Issue #11 結合テスト', '', '対象: fix/11-deliver-preview-to-main。チェックリスト確認済み。指定 .Codex/CHECKLISTS.md は存在せず、司令塔 .claude/CHECKLISTS.md を代用。', 'ブラウザ操作は依頼範囲外。DOMスタブでデータ読込→カード生成→補助文削除を通し検証する。', ''];
+lines.push('初回はセクション比較でLF/CRLF差による AssertionError (exit code 1) が発生。テスト側を改行正規化して修正済み。証跡追加後も再実行できるようサイト一致比較はlogsを除外し、main差分ではlogs/11を許容。サイトコード変更なし。', '');
 function cmd(command, args) {
   const output = execFileSync(command, args, {encoding:'utf8'}).trim();
   lines.push('```text', '> '+[command,...args].join(' '), output || '(出力なし)', 'exit code: 0', '```', '');
@@ -12,11 +13,11 @@ function pass(message) { console.log('PASS '+message); lines.push('- PASS '+mess
 try {
   cmd('git',['rev-parse','HEAD']);
   cmd('git',['rev-parse','origin/main']);
-  assert.equal(cmd('git',['diff','--name-only','447fa5f','HEAD']), '');
+  assert.equal(cmd('git',['diff','--name-only','447fa5f','HEAD','--','.',':(exclude)logs']), '');
   assert.equal(cmd('git',['diff','447fa5f','--','index.html','css','js','picture','concerns']), '');
-  pass('447fa5f と復旧HEADの全追跡ファイル一致。作業ツリーのサイトファイルも一致。');
+  pass('447fa5f と復旧HEADのlogs以外の全追跡ファイル一致。作業ツリーのサイトファイルも一致。');
   const files = cmd('git',['diff','--name-only','origin/main','HEAD']).split('\n');
-  assert.deepEqual(files,['css/reviews.css','index.html','js/reviews.js','logs/5/verification.md','logs/7/verification.md','logs/9/verification.md']);
+  assert.deepEqual(files.filter(file=>!file.startsWith('logs/11/')),['css/reviews.css','index.html','js/reviews.js','logs/5/verification.md','logs/7/verification.md','logs/9/verification.md']);
   const html = fs.readFileSync('index.html','utf8');
   const oldHtml = execFileSync('git',['show','origin/main:index.html'],{encoding:'utf8'});
   function sections(s) { return [...s.matchAll(/<section\b[\s\S]*?<\/section>/g)].map(x=>x[0].replace(/\r\n/g,'\n')); }
@@ -27,7 +28,7 @@ try {
   assert(html.indexOf('id="reviews"') < html.indexOf('id="concerns"'));
   assert(html.indexOf('id="concerns"') < html.indexOf('id="greeting"'));
   cmd('git',['diff','origin/main','HEAD','--','css/reviews.css','js/reviews.js']);
-  pass('mainとの差分は口コミUI/CSS背景・セクション順・過去ログのみ。セクション本文とそれ以外のHTMLは同一。');
+  pass('mainとの差分は口コミUI/CSS背景・セクション順・過去ログ・今回のlogs/11証跡のみ。セクション本文とそれ以外のHTMLは同一。');
   for (const name of fs.readdirSync('js').filter(x=>x.endsWith('.js'))) cmd('node',['--check','js/'+name]);
   cmd('git',['diff','--check','origin/main','HEAD']);
   cmd('git',['diff','--check']);
