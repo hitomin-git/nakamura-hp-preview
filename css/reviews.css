@@ -1,4 +1,9 @@
 /* TOP-only refinements, loaded after the shared mobile stylesheet. */
+#approach {
+  background: #e9ede4;
+  box-shadow: 0 0 0 100vmax #e9ede4;
+  clip-path: inset(0 -100vmax);
+}
 .hero .photo-caption {
   color: var(--ink);
   background: rgba(246, 244, 237, .94);
