@@ -1,5 +1,25 @@
-// Add only source-checked Google reviews. Empty data keeps the explicit placeholders.
-// Each item: { verified: true, author: "...", rating: 1..5, text: "...",
-//              sourceUrl: "https://www.google.com/maps/..." }
-// Keep the author's original wording. Do not store API keys here.
-window.nakamuraGoogleReviews = [];
+// Manually transcribed from the official website on 2026-09-18.
+// Preserve source wording and attribution; no automatic API updates.
+window.nakamuraReviews = [
+  {
+    "author": "男性30代前半｜姿勢改善・ブライダル整体&美容鍼",
+    "rating": 5,
+    "sourceUrl": "https://nakamuraseitai.jp/#voice",
+    "text": "妻の紹介で訪れ結婚式前の為に姿勢改善と美容鍼また、日頃の疲れである肩こり改善の施術を受けました。（びっくりするぐらい顔が小さくなりました。笑）\n\n施術前のカウンセリングが丁寧で、分かりやすく説明していただき安心して施術を任せることができました！ 中村さんはとても信頼できる方で接客も丁寧でした！\n\n施術後は体調が良く、体の変化を実感できました！院内も清潔で落ち着いた雰囲気でリラックスできました！\n\n結婚式が終わっても継続して通って日頃のケアとしてもお世話になりたいです！",
+    "verified": true
+  },
+  {
+    "author": "男性40代後半｜肩こり・自律神経の乱れ・食いしばり",
+    "rating": 5,
+    "sourceUrl": "https://nakamuraseitai.jp/#voice",
+    "text": "施術後すぐに体の変化を感じ、満足感が高まりました。\n施術前のカウンセリングも丁寧で、安心して任せられました！\n\n親切で、信頼できる環境だと感じ、\n院内の清潔感も素晴らしく、とても快適に過ごせました。\n\nぜひ継続して通いたいと思いますし、\n友人にも紹介したいと思っています。\n\n体の不調を抱えている方には、\nぜひ一度訪れてみてほしいと思います！",
+    "verified": true
+  },
+  {
+    "author": "女性20代後半｜腰痛・反り腰・足のむくみ",
+    "rating": 5,
+    "sourceUrl": "https://nakamuraseitai.jp/#voice",
+    "text": "施術全体に対する満足度は非常に高く、身体の変化や効果にも一定の効果が感じられました。初めての施術でも、施術前のカウンセリングや症状説明、施術方針の説明が非常に丁寧で分かりやすく、安心して任せられました。施術者およびスタッフの対応も非常に丁寧で、安心感がありました。院内の清潔感や設備も素晴らしく、快適に過ごせました。この経験から、ぜひ継続して通いたいと思いましたし、家族や友人にも紹介したいと感じました。",
+    "verified": true
+  }
+];
